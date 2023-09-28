@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { cartItems } from '../temp-data'
+import { cartItems } from '@/temp-data'
 
 export default {
 	name: 'ShoppingCartPage',

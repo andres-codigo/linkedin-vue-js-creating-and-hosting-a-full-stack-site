@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { products } from '../temp-data'
+import { products } from '@/temp-data'
 
 export default {
 	name: 'ProductDetailPage',
