@@ -2,7 +2,7 @@ import express from 'express'
 import { MongoClient } from 'mongodb'
 
 async function start() {
-	const url = `mongodb+srv://fsv-server:ns2Lz7XUr8Ozs1TV@cluster0.ooc4ytm.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`
+	const url = `mongodb+srv://fsv-server:ABC123@cluster0.ooc4ytm.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`
 	const client = new MongoClient(url)
 
 	await client.connect()
