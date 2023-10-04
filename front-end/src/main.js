@@ -7,18 +7,18 @@ import ProductsPage from './pages/ProductsPage.vue'
 import ProductDetailPage from './pages/ProductDetailPage.vue'
 import NotFoundPage from './pages/NotFoundPage.vue'
 
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBWQ-1xJyAahiskqfZkXGfOPiEf-77pOfA",
-  authDomain: "vue-full-stack-site-bcce6.firebaseapp.com",
-  projectId: "vue-full-stack-site-bcce6",
-  storageBucket: "vue-full-stack-site-bcce6.appspot.com",
-  messagingSenderId: "491188431412",
-  appId: "1:491188431412:web:7fc46267f69e8b61613861"
-};
+	apiKey: 'AIzaSyBWQ-1xJyAahiskqfZkXGfOPiEf-77pOfA',
+	authDomain: 'vue-full-stack-site-bcce6.firebaseapp.com',
+	projectId: 'vue-full-stack-site-bcce6',
+	storageBucket: 'vue-full-stack-site-bcce6.appspot.com',
+	messagingSenderId: '491188431412',
+	appId: '1:491188431412:web:7fc46267f69e8b61613861',
+}
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
 
 createApp(App)
 	.use(
@@ -36,6 +36,10 @@ createApp(App)
 				{
 					path: '/products/:productId',
 					component: ProductDetailPage,
+				},
+				{
+					path: '/',
+					redirect: '/products',
 				},
 				{
 					path: '/:pathMatch(.*)*',
