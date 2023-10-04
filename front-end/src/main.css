@@ -85,6 +85,10 @@ h1 {
   margin-top: 16px;
 }
 
+.sign-out {
+  margin-right: 16px;
+}
+
 .price {
   position: absolute;
   top: 24px;
