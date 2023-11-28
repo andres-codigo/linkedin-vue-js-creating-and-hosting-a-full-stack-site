@@ -8,15 +8,16 @@
 		<div class="nav-buttons-wrap">
 			<button class="sign-out" @click="signOut" v-if="user">Sign Out</button>
 			<router-link to="/cart">
-				<button>Shopping Cart</button>
+				<button>Shopping Cart ({{ cartCount }})</button>
 			</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
-import { getAuth, signOut } from 'firebase/auth'
-import logo from '@/assets/logo-hexagon.svg'
+import axios from 'axios';
+import { getAuth, signOut } from 'firebase/auth';
+import logo from '@/assets/logo-hexagon.svg';
 
 export default {
 	name: 'NavBar',
@@ -24,13 +25,26 @@ export default {
 	data() {
 		return {
 			logo,
-		}
+			cartItems: [],
+		};
+	},
+	computed: {
+		cartCount() {
+			return Object.keys(this.cartItems).length;
+		},
 	},
 	methods: {
 		signOut() {
-			const auth = getAuth()
-			signOut(auth)
+			const auth = getAuth();
+			signOut(auth);
 		},
 	},
-}
+	async created() {
+		if (this.user) {
+			const response = await axios.get(`/api/users/${this.user.uid}/cart`);
+			const cartItems = response.data;
+			this.cartItems = cartItems;
+		}
+	},
+};
 </script>

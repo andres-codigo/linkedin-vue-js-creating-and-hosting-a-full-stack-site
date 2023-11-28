@@ -20,5 +20,6 @@
 	"workbench.statusBar.visible": true,
 	"liveServer.settings.root": "/docs",
 	"prettier.enable": true,
-	"liveServer.settings.donotVerifyTags": true
+	"liveServer.settings.donotVerifyTags": true,
+	"cSpell.words": ["axios"]
 }
