@@ -32,9 +32,9 @@ import {
 	sendSignInLinkToEmail,
 	isSignInWithEmailLink,
 	signInWithEmailLink,
-} from 'firebase/auth'
-import axios from 'axios'
-import NotFoundPage from './NotFoundPage.vue'
+} from 'firebase/auth';
+import axios from 'axios';
+import NotFoundPage from './NotFoundPage.vue';
 
 export default {
 	name: 'ProductDetailPage',
@@ -43,13 +43,13 @@ export default {
 		return {
 			product: {},
 			cartItems: [],
-		}
+		};
 	},
 	computed: {
 		itemIsInCart() {
 			return this.cartItems.some(
 				(item) => item.id === this.$route.params.productId
-			)
+			);
 		},
 	},
 	watch: {
@@ -57,9 +57,9 @@ export default {
 			if (newUserValue) {
 				const cartResponse = await axios.get(
 					`/api/users/${newUserValue.uid}/cart`
-				)
-				const cartItems = cartResponse.data
-				this.cartItems = cartItems
+				);
+				const cartItems = cartResponse.data;
+				this.cartItems = cartItems;
 			}
 		},
 	},
@@ -67,44 +67,44 @@ export default {
 		async addToCart() {
 			await axios.post(`/api/users/${this.user.uid}/cart`, {
 				id: this.$route.params.productId,
-			})
-			alert('Successfully added item to cart!')
+			});
+			alert('Successfully added item to cart!');
 		},
 		async signIn() {
-			const email = prompt('Please enter your email to sign in:')
-			const auth = getAuth()
+			const email = prompt('Please enter your email to sign in:');
+			const auth = getAuth();
 			const actionCodeSettings = {
 				url: `https://full-stack-vue-deployment-su8a.onrender.com/products/${this.$route.params.productId}`,
 				handleCodeInApp: true,
-			}
-			await sendSignInLinkToEmail(auth, email, actionCodeSettings)
-			alert('A login link was sent to the email you provided')
-			window.localStorage.setItem('emailForSignIn', email)
+			};
+			await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+			alert('A login link was sent to the email you provided');
+			window.localStorage.setItem('emailForSignIn', email);
 		},
 	},
 	components: {
 		NotFoundPage,
 	},
 	async created() {
-		const auth = getAuth()
+		const auth = getAuth();
 		if (isSignInWithEmailLink(auth, window.location.href)) {
-			const email = window.localStorage.getItem('emailForSignIn')
-			await signInWithEmailLink(auth, email, window.location.href)
-			alert('Successfully signed in!')
-			window.localStorage.removeItem('emailForSignIn')
+			const email = window.localStorage.getItem('emailForSignIn');
+			await signInWithEmailLink(auth, email, window.location.href);
+			alert('Successfully signed in!');
+			window.localStorage.removeItem('emailForSignIn');
 		}
 
 		const response = await axios.get(
 			`/api/products/${this.$route.params.productId}`
-		)
-		const product = response.data
-		this.product = product
+		);
+		const product = response.data;
+		this.product = product;
 
 		if (this.user) {
-			const cartResponse = await axios.get(`/api/users/${this.user.uid}/cart`)
-			const cartItems = cartResponse.data
-			this.cartItems = cartItems
+			const cartResponse = await axios.get(`/api/users/${this.user.uid}/cart`);
+			const cartItems = cartResponse.data;
+			this.cartItems = cartItems;
 		}
 	},
-}
+};
 </script>
