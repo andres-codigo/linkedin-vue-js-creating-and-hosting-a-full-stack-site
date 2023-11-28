@@ -33,6 +33,17 @@ export default {
 			return Object.keys(this.cartItems).length;
 		},
 	},
+	watch: {
+		async user(newUserValue) {
+			if (newUserValue) {
+				const cartResponse = await axios.get(
+					`/api/users/${newUserValue.uid}/cart`
+				);
+				const cartItems = cartResponse.data;
+				this.cartItems = cartItems;
+			}
+		},
+	},
 	methods: {
 		signOut() {
 			const auth = getAuth();
