@@ -1,5 +1,5 @@
 <template>
-	<NavBar :user="user" />
+<NavBar :user="user" />
 	<div class="page-wrap">
 		<router-view :user="user"></router-view>
 	</div>
@@ -19,7 +19,7 @@ export default {
 			user: null,
 		};
 	},
-	created() {
+	async created() {
 		const auth = getAuth();
 		onAuthStateChanged(auth, (user) => {
 			this.user = user;
