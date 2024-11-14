@@ -8,7 +8,7 @@
 		<div class="nav-buttons-wrap">
 			<button class="sign-out" @click="signOut" v-if="user">Sign Out</button>
 			<router-link to="/cart">
-				<button>Shopping Cart {{ products.length }}</button>
+				<button>Shopping Cart</button>
 			</router-link>
 		</div>
 	</div>
@@ -20,7 +20,7 @@ import logo from '@/assets/logo-hexagon.svg';
 
 export default {
 	name: 'NavBar',
-	props: ['user', 'products'],
+	props: ['user'],
 	data() {
 		return {
 			logo,
